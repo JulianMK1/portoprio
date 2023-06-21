@@ -1,6 +1,5 @@
 <template>
   <div>
-    <p>Hallo Welt</p>
     <button @click="getJoke">Witz abrufen</button>
     <p>{{ joke }}</p>
   </div>
@@ -17,7 +16,7 @@ export default {
   },
   methods: {
     getJoke() {
-      axios.get('https://sv443.net/jokeapi/v2/joke/Any') // GET-Anfrage an die JokeAPI-URL mit der Kategorie "Programming"
+      axios.get('https://sv443.net/jokeapi/v2/joke/Any') // GET-Anfrage an die JokeAPI-URL mit einer zufälligen Kategorie"
         .then(response => {
           if (response.data.type === 'single') {
 
