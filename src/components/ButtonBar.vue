@@ -1,5 +1,6 @@
 <template>
   <div>
+    <p>Hallo Welt</p>
     <button @click="getJoke">Witz abrufen</button>
     <p>{{ joke }}</p>
   </div>
