@@ -2,7 +2,7 @@
   <h1>Willkommen auf unserer Seite</h1>
   <img src="./assets/Logo.png" alt="Bild konnte nicht geladen werden">
   <NavBar />
-  <ButtonBar />
+  <randomJoke />
   <SearchBar />
   <RadioButton />
   <radio-button :options="radioOptions" v-model="selectedValue"></radio-button>
@@ -14,7 +14,7 @@
 <script>
 
 import NavBar from './components/NavBar.vue'
-import ButtonBar from './components/ButtonBar.vue'
+import randomJoke from './components/randomJoke.vue'
 import SearchBar from './components/SearchBar.vue'
 import RadioButton from './components/RadioButton.vue'
 
@@ -23,7 +23,7 @@ export default {
   name: 'App',
   components: {
     NavBar,
-    ButtonBar,
+    randomJoke,
     SearchBar,
     RadioButton
   },
