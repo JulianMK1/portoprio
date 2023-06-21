@@ -1,6 +1,6 @@
 <template>
   <div>
-    <button @click="getJoke">Witz abrufen</button>
+    <button @click="getJoke">Random Joke</button>
     <p>{{ joke }}</p>
   </div>
 </template>

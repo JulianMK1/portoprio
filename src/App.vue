@@ -1,5 +1,5 @@
 <template>
-  <h1>Willkommen auf unserer Seite</h1>
+  <h1>Welcome to our awesome page</h1>
   <img src="./assets/Logo.png" alt="Bild konnte nicht geladen werden">
   <NavBar />
   <ButtonBar />
