@@ -1,30 +1,24 @@
 <template>
-  <nav class="navbar">
-    
-    <ul>
-
-      <li><a href="#home">Home</a></li>
-      <li><a href="#favourites">Favourites</a></li>      
-      <li><a href="#search">Type a topic...</a></li>
-      <li><a href="#info">Kontakt</a></li>
-
-
-    </ul>
-  </nav>
+<div class="navbar">
+    <div class="navbar-container">
+      <div class="logo"></div>
+      <ul class="nav-links">
+        <li><router-link to="/">Random Joke</router-link></li>
+        <li><router-link to="/SearchBar">Search Bar</router-link></li>
+      </ul>
+    </div>
+  </div>
 </template>
   
   
 <script>
 export default {
-  data() {
-    return {
-      menuItems: [
-        { id: 1, label: 'Home' },
-        { id: 2, label: 'Favourites' },
-        { id: 3, label: 'Kontakt' },
-      ]
-    };
-  }
+    name: 'NavBar',
+        methods: {
+          navigateToComponent(path) {
+            this.$route.push(path);
+          }
+        }
 }
 </script>
   
@@ -32,41 +26,50 @@ export default {
 <style scoped>
 
 
-/* Allgemeine Stile für die NavBar */
 .navbar {
-  background-color: #42b983;
-  padding: 15px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 60px;
+  background-color: #ffffff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-/* Stil für die Liste der NavBar-Elemente */
-.navbar ul {
-  list-style-type: none;
-  margin: 0;
+.navbar-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  max-width: 1200px;
+  margin: 0 auto;
+  height: 100%;
+  padding: 0 20px;
+}
+
+.logo {
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.nav-links {
+  list-style: none;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.nav-links li {
   padding: 0;
 }
 
-/* Stil für jedes einzelne NavBar-Element */
-.navbar li {
-  display: inline-block;
-  margin-right: 10px;
-}
-
-/* Stil für den Link innerhalb jedes NavBar-Elements */
-.navbar li a {
-  color: #333;
+.nav-links a {
   text-decoration: none;
-  padding: 5px;
+  color: #333333;
+  font-weight: bold;
+  transition: color 0.3s ease;
 }
 
-/* Stil für den aktiven Link */
-.navbar li a.active {
-  color: #fff;
-  background-color: #333;
-}
-
-/* Stil für den Hover-Effekt */
-.navbar li a:hover {
-  color: #fff;
-  background-color: #666;
+.nav-links a:hover {
+  color: #ff5500;
 }
 </style>
