@@ -3,7 +3,7 @@
       <input type="text" v-model="searchQuery" placeholder="Suche nach Witzen">
       <button @click="fetchJokes">Suche</button>
       <div v-if="jokes !== null">
-        <h2>{{ title }}:</h2>
+        <h2>{{ title }}</h2>
         <ul v-if="jokes.length > 0">
           <li v-for="(joke, index) in jokes" :key="index" class="joke-box">
             <div v-if="joke.type === 'single'">{{ joke.joke }}</div>
