@@ -1,6 +1,6 @@
 <template>
   <div>
-    <button @click="getJoke">Random Joke</button>
+    <button class="random-joke-button" @click="getJoke">Random Joke</button>
     <p>{{ joke }}</p>
   </div>
 </template>
@@ -41,8 +41,17 @@ export default {
 <!-- Hier steht nur CSS...irrelevant-->
 
 <style scoped>
+.random-joke-button {
+  font-size: 40px; /* Ändere die Schriftgröße, um den Button größer zu machen */
+  padding: 10px 30px; /* Passe das Padding an, um den Button größer zu machen */
+}
+
 h3 {
   margin: 40px 0 0;
+}
+
+p{
+  font-size: 30px;
 }
 
 ul {
