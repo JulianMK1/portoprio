@@ -15,6 +15,7 @@
   </template>
   
   <script>
+import axios from 'axios';
   export default {
     name: 'PunJokes',
     data() {
@@ -27,17 +28,17 @@
     },
     methods: {
       async fetchPunJokes() {
-        try {
-          const response = await fetch('https://sv443.net/jokeapi/v2/joke/Pun?amount=10');
-          const data = await response.json();
-  
-          if (data.error) {
-            this.jokes = [];
-          } else {
-            this.jokes = data.jokes;
-          }
-        } catch (error) {
-          console.error(error);
+      try {
+        const response = await axios.get('https://sv443.net/jokeapi/v2/joke/Pun?amount=10');
+        const data = response.data;
+
+        if (data.error) {
+          this.jokes = [];
+        } else {
+          this.jokes = data.jokes;
+        }
+      } catch (error) {
+        console.error(error);
         }
       },
     },

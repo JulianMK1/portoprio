@@ -15,6 +15,7 @@
   </template>
   
   <script>
+  import axios from 'axios';
   export default {
     name: 'DarkJokes',
     data() {
@@ -26,22 +27,22 @@
       this.fetchJokes();
     },
     methods: {
-      async fetchJokes() {
-        try {
-          const response = await fetch('https://sv443.net/jokeapi/v2/joke/Dark?amount=10');
-          const data = await response.json();
-  
-          if (data.error) {
-            this.jokes = []; // Keine Witze gefunden
-          } else {
-            this.jokes = data.jokes;
-          }
-        } catch (error) {
-          console.error(error);
+    async fetchJokes() {
+      try {
+        const response = await axios.get('https://sv443.net/jokeapi/v2/joke/Dark?amount=10');
+        const data = response.data;
+
+        if (data.error) {
+          this.jokes = []; // Keine Witze gefunden
+        } else {
+          this.jokes = data.jokes;
         }
-      },
+      } catch (error) {
+        console.error(error);
+      }
     },
-  };
+  },
+};
   </script>
   
   <style scoped>
