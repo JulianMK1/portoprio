@@ -9,7 +9,12 @@
       <ul class="nav-links">
         <li><router-link to="/">Random Joke</router-link></li>
         <li><router-link to="/SearchBar">Search Bar</router-link></li>
-        <li class="category-box" v-for="category in categories" :key="category">{{ category }}</li>
+        <li class="dropdown">
+          <span class="dropbtn">Categories</span>
+          <div class="dropdown-content">
+            <router-link v-for="category in categories" :key="category" :to="`/category/${category}`">{{ category }}</router-link>
+          </div>
+        </li>
       </ul>
     </div>
   </div>
@@ -20,13 +25,8 @@ export default {
   name: 'NavBar',
   data() {
     return {
-      categories: ['Programming', 'Miscellaneous', 'Pun', 'Spooky', 'Christmas'], // Liste der Witzekategorien
+      categories: ['Programming', 'Miscellaneous', 'Pun', 'Spooky', 'Christmas'],
     };
-  },
-  methods: {
-    navigateToComponent(path) {
-      this.$route.push(path);
-    },
   },
 };
 </script>
@@ -61,9 +61,7 @@ export default {
 
 .logo-image {
   width: 80px;
-  /* Neue Breite des Bildes */
   height: auto;
-  /* Das Bild wird proportional skaliert */
 }
 
 .nav-links {
@@ -88,11 +86,37 @@ export default {
   color: #42b983;
 }
 
-.category-box {
+.dropdown {
+  position: relative;
   display: inline-block;
-  padding: 5px 10px;
-  margin: 0 5px;
+}
+
+.dropbtn {
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
   background-color: #f1f1f1;
-  border-radius: 4px;
+  min-width: 160px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  z-index: 1;
+}
+
+.dropdown-content a {
+  color: black;
+  padding: 8px 12px;
+  text-decoration: none;
+  display: block;
+}
+
+.dropdown-content a:hover {
+  background-color: #ddd;
+}
+
+.dropdown:hover .dropdown-content {
+  display: block;
 }
 </style>
