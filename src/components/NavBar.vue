@@ -10,10 +10,10 @@
         <li><router-link to="/">Random Joke</router-link></li>
         <li><router-link to="/SearchBar">Search Bar</router-link></li>
         <li class="dropdown">
-          <span class="dropdown-toggle">Categories</span>
+          <span class="dropdown-toggle nav-link">Categories</span>
           <ul class="dropdown-menu">
             <li v-for="category in categories" :key="category">
-              <router-link :to="`/category/${category}`">{{ category }} Jokes</router-link>
+              <router-link :to="`/category/${category}`" class="nav-link">{{ category }} Jokes</router-link>
             </li>
           </ul>
         </li>
@@ -53,6 +53,12 @@ export default {
   height: 100%;
   padding: 0 20px;
 }
+.nav-link {
+  text-decoration: none;
+  color: #000000;
+  font-weight: bold;
+  transition: color 0.3s ease;
+}
 
 .logo {
   font-size: 24px;
@@ -79,7 +85,7 @@ export default {
 
 .nav-links a {
   text-decoration: none;
-  color: #42b983;
+  color: #000000;
   font-weight: bold;
   transition: color 0.3s ease;
 }
@@ -104,11 +110,18 @@ export default {
   list-style: none;
   background-color: #f1f1f1;
   padding: 10px;
-  margin-top: 5px;
+
   border-radius: 4px;
 }
 
 .dropdown:hover .dropdown-menu {
   display: block;
+}
+
+.span{
+  text-decoration: none;
+  color: #000000;
+  font-weight: bold;
+  transition: color 0.3s ease;
 }
 </style>
