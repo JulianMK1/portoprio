@@ -8,6 +8,9 @@ import MiscellaneousJokes from '@/components/MiscellaneousJokes.vue';
 import SpookyJokes from '@/components/SpookyJokes.vue';
 import randomJoke from './components/randomJoke.vue';
 import SearchBar from './components/SearchBar.vue';
+import DarkJokes from '@/components/DarkJokes.vue';
+
+
 
 
 
@@ -41,6 +44,12 @@ const routes = [
         name: 'ChristmasJokes',
         component: ChristmasJokes,
       },
+      {
+        path: '/category/Dark',
+        name: 'DarkJokes',
+        component: DarkJokes,
+      },
+
 
 
   ];

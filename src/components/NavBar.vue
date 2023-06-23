@@ -10,10 +10,12 @@
         <li><router-link to="/">Random Joke</router-link></li>
         <li><router-link to="/SearchBar">Search Bar</router-link></li>
         <li class="dropdown">
-          <span class="dropbtn">Categories</span>
-          <div class="dropdown-content">
-            <router-link v-for="category in categories" :key="category" :to="`/category/${category}`">{{ category }}</router-link>
-          </div>
+          <span class="dropdown-toggle">Categories</span>
+          <ul class="dropdown-menu">
+            <li v-for="category in categories" :key="category">
+              <router-link :to="`/category/${category}`">{{ category }} Jokes</router-link>
+            </li>
+          </ul>
         </li>
       </ul>
     </div>
@@ -25,7 +27,7 @@ export default {
   name: 'NavBar',
   data() {
     return {
-      categories: ['Programming', 'Miscellaneous', 'Pun', 'Spooky', 'Christmas'],
+      categories: ['Programming', 'Miscellaneous', 'Pun', 'Spooky', 'Christmas', 'Dark'], // Liste der Witzekategorien
     };
   },
 };
@@ -77,7 +79,7 @@ export default {
 
 .nav-links a {
   text-decoration: none;
-  color: #f8f8f0;
+  color: #42b983;
   font-weight: bold;
   transition: color 0.3s ease;
 }
@@ -88,35 +90,25 @@ export default {
 
 .dropdown {
   position: relative;
-  display: inline-block;
 }
 
-.dropbtn {
-  font-weight: bold;
+.dropdown-toggle {
   cursor: pointer;
 }
 
-.dropdown-content {
-  display: none;
+.dropdown-menu {
   position: absolute;
+  top: 100%;
+  left: 0;
+  display: none;
+  list-style: none;
   background-color: #f1f1f1;
-  min-width: 160px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-  z-index: 1;
+  padding: 10px;
+  margin-top: 5px;
+  border-radius: 4px;
 }
 
-.dropdown-content a {
-  color: black;
-  padding: 8px 12px;
-  text-decoration: none;
-  display: block;
-}
-
-.dropdown-content a:hover {
-  background-color: #ddd;
-}
-
-.dropdown:hover .dropdown-content {
+.dropdown:hover .dropdown-menu {
   display: block;
 }
 </style>
