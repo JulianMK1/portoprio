@@ -82,11 +82,9 @@ p {
   border: none;
   border-radius: 50%;
   cursor: pointer;
-  width: 40px;
-  height: 40px;
   display: flex;
   justify-content: center;
   align-items: center;
-  margin: 20px auto;
+  margin: 10px auto 0; /* Ändere den Wert von margin-top auf auto */
 }
 </style>

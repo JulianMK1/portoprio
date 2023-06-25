@@ -86,14 +86,16 @@ p {
 }
 
 .show-more-button {
-  font-size: 16px;
+  font-size: 24px;
   padding: 10px 20px;
   background-color: #f1f1f1;
   border: none;
-  border-radius: 50px;
+  border-radius: 50%;
   cursor: pointer;
-  width: 200px;
-  color: #333;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 10px;
 }
 
 .show-more-button:hover {

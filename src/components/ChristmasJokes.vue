@@ -89,12 +89,15 @@ p {
 }
 
 .show-more-button {
-  font-size: 16px;
+  font-size: 24px;
   padding: 10px 20px;
   background-color: #f1f1f1;
   border: none;
-  border-radius: 5px;
+  border-radius: 50%;
   cursor: pointer;
-  width: 200px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 10px;
 }
 </style>
