@@ -15,11 +15,12 @@
       </ul>
       <p v-else>Unfortunately, we don't have a joke to that...</p>
     </div>
+    <button @click="fetchMoreJokes" v-if="jokes !== null && jokes.length > 0" class="show-more-button">+</button>
   </div>
 </template>
 
 <style>
-p{
+p {
   font-size: 24px;
 }
 
@@ -32,6 +33,31 @@ p{
 .search-button {
   font-size: 16px;
   padding: 10px 20px;
+  background-color: #f1f1f1;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.search-button:hover {
+  background-color: #e0e0e0;
+}
+
+.show-more-button {
+  font-size: 16px;
+  padding: 10px 20px;
+  background-color: #f1f1f1;
+  border: none;
+  border-radius: 50px;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 10px;
+}
+
+.show-more-button:hover {
+  background-color: #e0e0e0;
 }
 
 .joke-box {
@@ -41,7 +67,7 @@ p{
 }
 
 ul {
-  list-style-type: none; /* Entfernt den Punkt vor jedem Listenelement */
+  list-style-type: none;
 }
 </style>
 
@@ -50,24 +76,39 @@ export default {
   data() {
     return {
       searchQuery: '',
-      jokes: null, // Vorläufiger Wert, um zwischen Zuständen zu unterscheiden
-      title: 'Witze' // Standardtitel
+      jokes: null,
+      title: 'Witze',
+      jokeCount: 10 // Anfangsanzahl der Witze
     };
   },
   methods: {
     async fetchJokes() {
       try {
-        const response = await fetch(`https://sv443.net/jokeapi/v2/joke/Any?amount=10&contains=${this.searchQuery}`);
+        const response = await fetch(`https://sv443.net/jokeapi/v2/joke/Any?amount=${this.jokeCount}&contains=${this.searchQuery}`);
         const data = await response.json();
-        
+
         if (data.error) {
-          this.jokes = []; // Keine Witze gefunden
+          this.jokes = [];
         } else {
           this.jokes = data.jokes;
         }
-        
-        // Setze den Titel basierend auf der Benutzereingabe
+
         this.title = this.searchQuery !== '' ? `Jokes about "${this.searchQuery}:"` : 'Witze';
+      } catch (error) {
+        console.error(error);
+      }
+    },
+    async fetchMoreJokes() {
+      try {
+        const response = await fetch(`https://sv443.net/jokeapi/v2/joke/Any?amount=5&contains=${this.searchQuery}`);
+        const data = await response.json();
+
+        if (data.error) {
+          console.error(data.message);
+          return;
+        }
+
+        this.jokes = [...this.jokes, ...data.jokes];
       } catch (error) {
         console.error(error);
       }
@@ -75,3 +116,6 @@ export default {
   }
 };
 </script>
+
+
+
