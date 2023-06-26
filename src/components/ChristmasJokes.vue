@@ -12,7 +12,8 @@
     </ul>
     <p v-else>No Christmas jokes available.</p>
     <div class="button-container">
-      <button @click="fetchMoreJokes" v-if="jokes.length > 0" class="show-more-button">+</button>
+      <button @click="fetchMoreJokes" v-if="hasMoreJokes" class="show-more-button">+</button>
+      <p v-else>There are no more jokes left...</p>
     </div>
   </div>
 </template>
@@ -26,6 +27,8 @@ export default {
     return {
       jokes: [],
       jokeCount: 10,
+      displayedJokeIds: [], // Liste der angezeigten Witz-IDs
+      hasMoreJokes: true, // Ob weitere Witze verfügbar sind
     };
   },
   created() {
@@ -41,6 +44,7 @@ export default {
           this.jokes = [];
         } else {
           this.jokes = data.jokes;
+          this.updateDisplayedJokeIds(); // Aktualisiere die Liste der angezeigten Witz-IDs
         }
       } catch (error) {
         console.error(error);
@@ -56,10 +60,22 @@ export default {
           return;
         }
 
-        this.jokes = [...this.jokes, ...data.jokes];
+        const newJokes = data.jokes.filter((joke) => !this.displayedJokeIds.includes(joke.id));
+
+        if (newJokes.length === 0) {
+          this.hasMoreJokes = false; // Keine weiteren Witze verfügbar
+          return;
+        }
+
+        this.jokes = [...this.jokes, ...newJokes];
+        this.updateDisplayedJokeIds(); // Aktualisiere die Liste der angezeigten Witz-IDs
       } catch (error) {
         console.error(error);
       }
+    },
+    updateDisplayedJokeIds() {
+      // Aktualisiere die Liste der angezeigten Witz-IDs basierend auf den aktuellen angezeigten Witzen
+      this.displayedJokeIds = this.jokes.map((joke) => joke.id);
     },
   },
 };

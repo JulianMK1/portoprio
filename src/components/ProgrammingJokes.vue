@@ -12,7 +12,8 @@
     </ul>
     <p v-else>No programming jokes available.</p>
     <div class="button-container">
-      <button @click="fetchMoreJokes" v-if="jokes.length > 0" class="show-more-button">+</button>
+      <button @click="fetchMoreJokes" v-if="hasMoreJokes" class="show-more-button">+</button>
+      <p v-else>There are no more jokes left...</p>
     </div>
   </div>
 </template>
@@ -24,6 +25,7 @@ export default {
   data() {
     return {
       jokes: [],
+      hasMoreJokes: true, // Ob weitere Witze verfügbar sind
     };
   },
   created() {
@@ -51,9 +53,16 @@ export default {
 
         if (data.error) {
           console.log('No more jokes available.');
-        } else {
-          this.jokes.push(...data.jokes);
+          this.hasMoreJokes = false; // Keine weiteren Witze verfügbar
+          return;
         }
+
+        if (data.jokes.length === 0) {
+          this.hasMoreJokes = false; // Keine weiteren Witze verfügbar
+          return;
+        }
+
+        this.jokes.push(...data.jokes);
       } catch (error) {
         console.error(error);
       }
@@ -62,19 +71,17 @@ export default {
 };
 </script>
 
+
 <style scoped>
 .joke-box {
   background-color: #f1f1f1;
   padding: 10px;
   margin-bottom: 10px;
+  font-size: 24px; /* Hinzugefügt */
 }
 
 ul {
   list-style-type: none;
-}
-
-p {
-  font-size: 24px;
 }
 
 .button-container {
@@ -96,9 +103,5 @@ p {
   justify-content: center;
   align-items: center;
   margin-top: 10px;
-}
-
-.show-more-button:hover {
-  background-color: #ddd;
 }
 </style>

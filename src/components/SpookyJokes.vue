@@ -11,17 +11,20 @@
       </li>
     </ul>
     <p v-else>No spooky jokes available.</p>
-    <button @click="fetchMoreJokes" v-if="jokes.length > 0" class="show-more-button">+</button>
+    <button @click="fetchMoreJokes" v-if="jokes.length > 0 && !noMoreJokes" class="show-more-button">+</button>
+    <p v-if="noMoreJokes">There are no more jokes left...</p>
   </div>
 </template>
 
 <script>
 import axios from 'axios';
+
 export default {
   name: 'SpookyJokes',
   data() {
     return {
       jokes: [],
+      noMoreJokes: false,
     };
   },
   created() {
@@ -49,8 +52,16 @@ export default {
 
         if (data.error) {
           console.log('No more jokes available.');
+          this.noMoreJokes = true;
         } else {
-          this.jokes.push(...data.jokes);
+          const newJokes = data.jokes.filter((newJoke) => {
+            return !this.jokes.some((existingJoke) => existingJoke.id === newJoke.id);
+          });
+          if (newJokes.length === 0) {
+            this.noMoreJokes = true;
+          } else {
+            this.jokes.push(...newJokes);
+          }
         }
       } catch (error) {
         console.error(error);

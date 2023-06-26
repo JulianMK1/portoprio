@@ -62,7 +62,27 @@ export default {
 };
 </script>
 
+
 <style scoped>
+.joke-box {
+  background-color: #f1f1f1;
+  padding: 10px;
+  margin-bottom: 10px;
+  font-size: 24px; /* Hinzugefügt */
+}
+
+ul {
+  list-style-type: none;
+}
+
+.button-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  margin-top: 20px;
+}
+
 .show-more-button {
   font-size: 24px;
   padding: 10px 20px;
@@ -75,13 +95,4 @@ export default {
   align-items: center;
   margin-top: 10px;
 }
-
-.show-more-button:hover {
-  background-color: #e0e0e0;
-}
-
-.button-container {
-  display: flex;
-  justify-content: center;
-}
-</style>
+</style>a

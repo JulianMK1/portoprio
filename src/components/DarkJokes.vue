@@ -3,16 +3,17 @@
     <h2>Dark Jokes</h2>
     <ul v-if="jokes.length > 0">
       <li v-for="(joke, index) in jokes" :key="index" class="joke-box">
-        <div v-if="joke.type === 'single'">{{ joke.joke }}</div>
+        <div v-if="joke.type === 'single'" class="joke-text">{{ joke.joke }}</div>
         <div v-else>
-          <p>{{ joke.setup }}</p>
-          <p>{{ joke.delivery }}</p>
+          <p class="joke-setup">{{ joke.setup }}</p>
+          <p class="joke-delivery">{{ joke.delivery }}</p>
         </div>
       </li>
     </ul>
     <p v-else>No dark jokes available.</p>
     <div class="button-container">
-      <button @click="fetchMoreJokes" v-if="jokes.length > 0" class="show-more-button">+</button>
+      <button @click="fetchMoreJokes" v-if="hasMoreJokes" class="show-more-button">+</button>
+      <p v-else>There are no more jokes left...</p>
     </div>
   </div>
 </template>
@@ -24,6 +25,7 @@ export default {
   data() {
     return {
       jokes: [],
+      hasMoreJokes: true, // Ob weitere Witze verfügbar sind
     };
   },
   created() {
@@ -51,8 +53,14 @@ export default {
 
         if (data.error) {
           console.log('No more jokes available.');
-        } else {
-          this.jokes.push(...data.jokes);
+          this.hasMoreJokes = false; // Keine weiteren Witze verfügbar
+          return;
+        }
+
+        const newJokes = data.jokes.filter((joke) => !this.jokes.some((existingJoke) => existingJoke.id === joke.id));
+        this.jokes.push(...newJokes);
+        if (newJokes.length === 0) {
+          this.hasMoreJokes = false; // Keine weiteren Witze verfügbar
         }
       } catch (error) {
         console.error(error);
@@ -62,15 +70,13 @@ export default {
 };
 </script>
 
-<style scoped>
-p {
-  font-size: 24px;
-}
 
+<style scoped>
 .joke-box {
   background-color: #f1f1f1;
   padding: 10px;
   margin-bottom: 10px;
+  font-size: 24px; /* Hinzugefügt */
 }
 
 ul {

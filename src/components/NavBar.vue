@@ -83,6 +83,12 @@ export default {
   padding: 0;
 }
 
+.dropdown-divider {
+  margin: 8px 0;
+  border: none;
+  border-top: 1px solid #ccc;
+}
+
 .nav-links a {
   text-decoration: none;
   color: #000000;
@@ -103,6 +109,7 @@ export default {
 }
 
 .dropdown-menu {
+  padding: 10px 0;
   position: absolute;
   top: 100%;
   left: 0;
