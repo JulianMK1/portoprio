@@ -1,16 +1,24 @@
-# my-project
+# PORTOPRIO
 
-## Project setup
+## Team
+- Hakan Kaya, MNr.
+- Julian Hellstern, 35576
+- Sascha Vusatjuk, MNr.
+
+### URL zu Anwendung in Cloud
+(hier URL einfügen)
+## Setup
+### Abhängigkeiten installieren
 ```
 npm install
 ```
 
-### Compiles and hot-reloads for development
+### Kompilieren und Entwicklungsserver für Hot-Deployment starten
 ```
-npm run serve
+npm run serve (npm run dev)
 ```
 
-### Compiles and minifies for production
+### Erstellen eines Production-Builds
 ```
 npm run build
 ```
@@ -22,3 +30,9 @@ npm run lint
 
 ### Customize configuration
 See [Configuration Reference](https://cli.vuejs.org/config/).
+
+## Quellen
+- [Vue](https://vuejs.org/)
+- [Vuetify](https://vuetifyjs.com/en/)
+- ChatGPT
+
