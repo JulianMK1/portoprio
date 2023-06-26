@@ -44,17 +44,20 @@ p {
 }
 
 .show-more-button {
-  font-size: 16px;
+  font-size: 24px;
   padding: 10px 20px;
   background-color: #f1f1f1;
   border: none;
-  border-radius: 50px;
+  border-radius: 50%;
   cursor: pointer;
   display: flex;
   justify-content: center;
   align-items: center;
   margin-top: 10px;
+  margin-left: auto;
+  margin-right: auto;
 }
+
 
 .show-more-button:hover {
   background-color: #e0e0e0;
