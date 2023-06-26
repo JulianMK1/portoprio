@@ -1,9 +1,9 @@
 # PORTOPRIO
 
 ## Team
-- Hakan Kaya, MNr.
+- Hakan Kaya, 35578
 - Julian Hellstern, 35576
-- Sascha Vusatjuk, MNr.
+- Sascha Vusatjuk, 35650
 
 ### URL zu Anwendung in Cloud
 (hier URL einfügen)
