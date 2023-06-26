@@ -72,6 +72,8 @@ ul {
 </style>
 
 <script>
+import axios from 'axios';
+
 export default {
   data() {
     return {
@@ -84,8 +86,8 @@ export default {
   methods: {
     async fetchJokes() {
       try {
-        const response = await fetch(`https://sv443.net/jokeapi/v2/joke/Any?amount=${this.jokeCount}&contains=${this.searchQuery}`);
-        const data = await response.json();
+        const response = await axios.get(`https://sv443.net/jokeapi/v2/joke/Any?amount=${this.jokeCount}&contains=${this.searchQuery}`);
+        const data = response.data;
 
         if (data.error) {
           this.jokes = [];
@@ -100,8 +102,8 @@ export default {
     },
     async fetchMoreJokes() {
       try {
-        const response = await fetch(`https://sv443.net/jokeapi/v2/joke/Any?amount=5&contains=${this.searchQuery}`);
-        const data = await response.json();
+        const response = await axios.get(`https://sv443.net/jokeapi/v2/joke/Any?amount=5&contains=${this.searchQuery}`);
+        const data = response.data;
 
         if (data.error) {
           console.error(data.message);
