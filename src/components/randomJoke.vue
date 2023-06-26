@@ -14,6 +14,9 @@ export default {
       joke: '',
     };
   },
+  created() {
+    this.getJoke();
+  },
   methods: {
     getJoke() {
       axios.get('https://sv443.net/jokeapi/v2/joke/Any') // GET-Anfrage an die JokeAPI-URL mit einer zufälligen Kategorie"
