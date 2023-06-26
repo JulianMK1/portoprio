@@ -20,6 +20,7 @@
 
 <script>
 import axios from 'axios';
+
 export default {
   name: 'ProgrammingJokes',
   data() {
@@ -57,12 +58,16 @@ export default {
           return;
         }
 
-        if (data.jokes.length === 0) {
+        const newJokes = data.jokes.filter((newJoke) => {
+          return !this.jokes.some((existingJoke) => existingJoke.id === newJoke.id);
+        });
+
+        if (newJokes.length === 0) {
           this.hasMoreJokes = false; // Keine weiteren Witze verfügbar
           return;
         }
 
-        this.jokes.push(...data.jokes);
+        this.jokes.push(...newJokes);
       } catch (error) {
         console.error(error);
       }
